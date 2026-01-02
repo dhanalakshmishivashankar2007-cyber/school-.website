@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>School Student Portal</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f0f4f8;
+            text-align: center;
+        }
+        .box {
+            background: white;
+            width: 300px;
+            margin: 80px auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+        input, button {
+            width: 90%;
+            padding: 8px;
+            margin: 8px;
+        }
+        img {
+            width: 150px;
+            margin-top: 10px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="box" id="loginBox">
+    <h2>Student Login</h2>
+    <input type="text" id="user" placeholder="Username">
+    <input type="password" id="pass" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p id="msg" style="color:red;"></p>
+</div>
+
+<div class="box" id="uploadBox" style="display:none;">
+    <h2>Upload Student Photo</h2>
+    <input type="file" accept="image/*" onchange="showImage(event)">
+    <br>
+    <img id="preview">
+    <br><br>
+    <button onclick="logout()">Logout</button>
+</div>
+
+<script>
+    function login() {
+        let u = document.getElementById("user").value;
+        let p = document.getElementById("pass").value;
+
+        if (u === "student" && p === "1234") {
+            document.getElementById("loginBox").style.display = "none";
+            document.getElementById("uploadBox").style.display = "block";
+        } else {
+            document.getElementById("msg").innerHTML = "Invalid login!";
+        }
+    }
+
+    function showImage(event) {
+        let img = document.getElementById("preview");
+        img.src = URL.createObjectURL(event.target.files[0]);
+    }
+
+    function logout() {
+        location.reload();
+    }
+</script>
+
+</body>
+</html>
